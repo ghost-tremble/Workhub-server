@@ -19,7 +19,7 @@ const isPasswordValid = await bcrpt.compare(password,user.password)
     }
 
    const token = await jwt.sign({
-    data: {email:user.email, id:user._id}
+    email:user.email, id:user._id
   }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
   if (!token)

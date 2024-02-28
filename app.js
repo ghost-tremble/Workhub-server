@@ -2,10 +2,11 @@ const express = require("express");
 const dotEnv = require("dotenv");
 dotEnv.config();
 const connectDB = require("./DB/connect");
-const User = require("./Model/User");
+
 const app = express();
 const authenticationRoutes =  require("./routes/authentication")
-const sample = require("./controller/sample");
+const userRoutes = require("./routes/user")
+const validateToken = require("./middleware/validateToken");
 
 
 // Connect Db
@@ -18,9 +19,9 @@ app.use(express.json());
 app.use("/api/v1",authenticationRoutes)
 
 
-
-
-app.post("/api/user",sample);
+//protected routes
+app.use(validateToken)
+app.use("/api/v1/user",userRoutes);
 
 
 module.exports = app;
