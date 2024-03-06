@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
     type: String,  // Fix: 'Type' should be 'type'
     required: true,
   },
+  profilePicture: {
+    type: String
+  },
   preferences: {
     type: Array,
     default: [],

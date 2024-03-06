@@ -12,8 +12,7 @@ try{
 
     sendData(res,200,{
         data:{user:{
-            email:user.email,
-            userType:user.userType
+           ...user.toObject()
         }},
         message:"success"})
 }

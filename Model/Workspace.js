@@ -7,22 +7,44 @@ const WorkspaceSchema = new mongoose.Schema({
   },
   type:{
     type: String,
-    enum: [...workSpaceTypes],
+    enum: [workSpaceTypes.conferences,workSpaceTypes.hub,workSpaceTypes.private],
     required: true,
-  }
-,
-host:{
+  },
+  postCode:{
+    type: String,
+    required: true,
+  }, 
+  address:{
+    type: String,
+    required: true,
+  },
+  description:{
+type: String,
+    required: true,
+  },
+  amenities:{
+    type: Array,
+    default: [],
+  },
+image:{
+type: String,
+},
+images:{
+  type: Array,
+  default: [],
+},
+user:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Host',
+    ref: 'User',
     required: true,
 },
 
 availaibility: {type: Boolean, default: true},
-spaces :{type:number , default: 0}
+spaces :{type:Number , default: 0}
 }, { timestamps: true });
 
 
-const User = mongoose.model('User', WorkspaceSchema);
+const Workspace = mongoose.model('Workspace', WorkspaceSchema);
 
 
-module.exports = User;
+module.exports = Workspace;

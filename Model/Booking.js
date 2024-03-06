@@ -1,21 +1,28 @@
 const mongoose = require('mongoose');
 
 const BookingsSchema = new mongoose.Schema({
-  lesson: {
+  user:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'lesson',
+    ref: 'User',
     required: true,
   },
-durationStart : {type:Number},
-durationEnd : {type:Number},
-capacity : {type:Number},
+  workspace: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'workspace',
+    required: true,
+  },
+durationStart : {type:Number,
+required: true,
+},
+durationEnd : {type:Number,required: true,},
+capacity : {type:Number,required: true,},
 
 
 
 }, { timestamps: true });
 
 
-const User = mongoose.model('User', BookingsSchema);
+const Booking = mongoose.model('Booking', BookingsSchema);
 
 
-module.exports = User;
+module.exports = Booking;
